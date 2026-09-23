@@ -4,6 +4,12 @@
 // No sabe como hacer nada: solo llama a cada modulo en el orden correcto.
 // ============================================
 
+// main.ino
+// ============================================
+// RESPONSABILIDAD: Orquestar arranque y bucle principal del sistema.
+// No sabe como hacer nada: solo llama a cada modulo en el orden correcto.
+// ============================================
+
 #include "config.h"
 #include "i2c_manager.h"
 #include "display.h"
@@ -25,6 +31,10 @@ void setup() {
     // Paso 2 — Bus I2C compartido levantado (verás [I2C] bus listo SDA=21 SCL=22).
     // Paso 3 — Barrido del bus reportado (verás el dispositivo en 0x3C y el conteo final).
     // Paso 4 — Dirección del panel sondeada (verás la respuesta del POST del OLED).
+    initI2C();
+    scanI2C();
+    testI2CDevice();
+    initDisplay();
 
     // TODO 2.4: Escribe las llamadas de los pasos 5 y 6 para pintar el logo y ejecutar el POST de pantalla.
     // Paso 5 — Panel inicializado (verás el panel listo de 128x64 a 400 kHz).
